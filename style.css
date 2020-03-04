@@ -34,18 +34,17 @@ body {
 }
 
 /**********************************************
-*** Вэбийн толгой хэсэг
-**********************************************/
+*** Вэбийн толгой хэсэгdfsafef
+***********d**********************************/
 
 .top {
-  height: 40vh;
+  height: 60vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
-    url(back.png);
+    url(back.jpg);
   background-size: cover;
   background-position: center;
   position: relative;
 }
-
 .budget {
   position: absolute;
   width: 350px;
@@ -70,80 +69,102 @@ body {
   letter-spacing: 2px;
 }
 
-.budget__income,
-.budget__expenses {
+.budget__gartolgoh,
+.budget__haoat,
+.budget__uridchilgaa,
+.budget__nd {
   padding: 12px;
   text-transform: uppercase;
 }
 
-.budget__income {
-  margin-bottom: 10px;
+.budget__gartolgoh {
+  margin-bottom: 20px;
   background-color: #28b9b5;
 }
 
-.budget__expenses {
-  background-color: #ff5049;
+.budget__nd {
+  margin-bottom: 5px;
+  background-color: #ff6c6c;
+}
+.budget__haoat {
+  margin-bottom: 5px;
+  background-color: #ff6c6c;
+}
+.budget__uridchilgaa {
+  margin-bottom: 5px;
+  background-color: #ff6c6c;
 }
 
-.budget__income--text,
-.budget__expenses--text {
+.budget__gartolgoh--text,
+.budget__haoat--text,
+.budget__uridchilgaa--text,
+.budget__nd--text {
   float: left;
   font-size: 13px;
   color: #444;
   margin-top: 2px;
 }
 
-.budget__income--value,
-.budget__expenses--value {
+.budget__gartolgoh--value,
+.budget__haoat--value,
+.budget__uridchilgaa--value,
+.budget__nd--value {
   letter-spacing: 1px;
   float: left;
 }
 
-.budget__income--percentage,
-.budget__expenses--percentage {
+.budget__gartolgoh--percentage,
+.budget__haoat--percentage,
+.budget__uridchilgaa--percentage,
+.budget__nd--percentage {
   float: left;
   width: 34px;
   font-size: 11px;
   padding: 3px 0;
   margin-left: 10px;
 }
-
-.budget__expenses--percentage {
-  background-color: rgba(255, 255, 255, 0.2);
-  text-align: center;
-  border-radius: 3px;
+.budget__gartolgoh--value:hover,
+.budget__haoat--value:hover,
+.budget__uridchilgaa--value:hover,
+.budget__nd--value:hover {
+  margin-right: 5px;
 }
-
-/**********************************************
-*** Вэбийн хөл хэсэг
-**********************************************/
-
+.budget__gartolgoh--text:hover,
+.budget__haoat--text:hover,
+.budget__uridchilgaa--text:hover,
+.budget__nd--text:hover {
+  margin-left: 5px;
+}
+.budget__value:hover {
+  margin-right: 5px;
+}
 /***** Форм *****/
 .add {
   padding: 14px;
   border-bottom: 1px solid #e7e7e7;
   background-color: #f7f7f7;
 }
-
 .add__container {
   margin: 0 auto;
   text-align: center;
 }
-
-.add__type {
+.add__uridchilgaa,
+.add__direct {
   width: 55px;
   border: 1px solid #e7e7e7;
   height: 44px;
-  font-size: 18px;
+  font-size: 14px;
+  font-family: inherit;
   color: inherit;
   background-color: #fff;
   margin-right: 10px;
   font-weight: 300;
   transition: border 0.3s;
 }
-
-.add__description,
-.add__value {
+.add__salary,
+.add__undsentsag,
+.add__ilvvtsag,
+.add__bayriintsag {
   border: 1px solid #e7e7e7;
   background-color: #fff;
   color: inherit;
@@ -154,14 +175,24 @@ body {
   border-radius: 5px;
   transition: border 0.3s;
 }
-
-.add__description {
-  width: 400px;
+.add__uridchilgaa {
+  width: 200px;
 }
-.add__value {
+.add__direct {
   width: 100px;
 }
-
+.add__undsentsag {
+  width: 150px;
+}
+.add__ilvvtsag {
+  width: 150px;
+}
+.add__bayriintsag {
+  width: 150px;
+}
+.add__salary {
+  width: 150px;
+}
 .add__btn {
   font-size: 35px;
   background: none;
@@ -177,10 +208,12 @@ body {
 .add__btn:active {
   transform: translateY(2px);
 }
-
-.add__type:focus,
-.add__description:focus,
-.add__value:focus {
+.add__direct:focus,
+.add__salary:focus,
+.add__uridchilgaa:focus,
+.add__undsentsag:focus,
+.add__bayriintsag:focus,
+.add__ilvvtsag:focus {
   outline: none;
   border: 1px solid #28b9b5;
 }
@@ -189,122 +222,21 @@ body {
   outline: none;
 }
 
-/***** Агуулагчид *****/
 .container {
   width: 1000px;
   margin: 60px auto;
 }
-
-.income {
-  float: left;
-  width: 475px;
-  margin-right: 50px;
-}
-
-.expenses {
-  float: left;
-  width: 475px;
-}
-
 h2 {
   text-transform: uppercase;
   font-size: 18px;
+  text-align: center;
   font-weight: 400;
   margin-bottom: 15px;
 }
-
-.icome__title {
-  color: #28b9b5;
-}
-.expenses__title {
-  color: #ff5049;
-}
-
-.item {
-  padding: 13px;
-  border-bottom: 1px solid #e7e7e7;
-}
-
-.item:first-child {
-  border-top: 1px solid #e7e7e7;
-}
-.item:nth-child(even) {
-  background-color: #f7f7f7;
-}
-
-.item__description {
-  float: left;
-}
-
-.item__value {
-  float: left;
-  transition: transform 0.3s;
-}
-
-.item__percentage {
-  float: left;
-  margin-left: 20px;
-  transition: transform 0.3s;
-  font-size: 11px;
-  background-color: #ffdad9;
-  padding: 3px;
-  border-radius: 3px;
-  width: 32px;
+.news_value {
   text-align: center;
-}
-
-.income .item__value,
-.income .item__delete--btn {
   color: #28b9b5;
 }
-
-.expenses .item__value,
-.expenses .item__percentage,
-.expenses .item__delete--btn {
-  color: #ff5049;
-}
-
-.item__delete {
-  float: left;
-}
-
-.item__delete--btn {
-  font-size: 22px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: inline-block;
-  vertical-align: middle;
-  line-height: 1;
-  display: none;
-}
-
-.item__delete--btn:focus {
-  outline: none;
-}
-.item__delete--btn:active {
-  transform: translateY(2px);
-}
-
-.item:hover .item__delete--btn {
-  display: block;
-}
-.item:hover .item__value {
-  transform: translateX(-20px);
-}
-.item:hover .item__percentage {
-  transform: translateX(-20px);
-}
-
-.unpaid {
-  background-color: #ffdad9 !important;
-  cursor: pointer;
-  color: #ff5049;
-}
-
-.unpaid .item__percentage {
-  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
-}
-.unpaid:hover .item__description {
-  font-weight: 900;
+.news_list {
+  text-align: center;
 }

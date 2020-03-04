@@ -13,30 +13,44 @@
       type="text/css"
     />
     <link type="text/css" rel="stylesheet" href="style.css" />
-    <title>Өрхийн санхүү</title>
+    <title>Цалин бодох V1.0</title>
   </head>
   <body>
     <div class="top">
       <div class="budget">
         <div class="budget__title">
-          <span class="budget__title--month"></span> өрхийн санхүү
+          <span class="budget__title--month"></span> нийт цалин
         </div>
 
-        <div class="budget__value">+ 2,345.64</div>
+        <div class="budget__value">+ 0</div>
 
-        <div class="budget__income clearfix">
-          <div class="budget__income--text">Орлого</div>
+        <div class="budget__gartolgoh clearfix">
+          <div class="budget__gartolgoh--text">Гарт олгох</div>
           <div class="right">
-            <div class="budget__income--value">+ 4,300.00</div>
-            <div class="budget__income--percentage">&nbsp;</div>
+            <div class="budget__gartolgoh--value">+ 0</div>
+            <div class="budget__gartolgoh--percentage">&nbsp;</div>
           </div>
         </div>
 
-        <div class="budget__expenses clearfix">
-          <div class="budget__expenses--text">Зарлага</div>
+        <div class="budget__nd clearfix">
+          <div class="budget__nd--text">НДШ</div>
           <div class="right clearfix">
-            <div class="budget__expenses--value">- 1,954.36</div>
-            <div class="budget__expenses--percentage">45%</div>
+            <div class="budget__nd--value">- 0</div>
+            <div class="budget__nd--percentage">0%</div>
+          </div>
+        </div>
+        <div class="budget__haoat clearfix">
+          <div class="budget__haoat--text">ХАОАТ</div>
+          <div class="right clearfix">
+            <div class="budget__haoat--value">- 0</div>
+            <div class="budget__haoat--percentage">0%</div>
+          </div>
+        </div>
+        <div class="budget__uridchilgaa clearfix">
+          <div class="budget__uridchilgaa--text">Урьдчилгаа</div>
+          <div class="right clearfix">
+            <div class="budget__uridchilgaa--value">- 0</div>
+            <div class="budget__uridchilgaa--percentage">0%</div>
           </div>
         </div>
       </div>
@@ -45,33 +59,42 @@
     <div class="bottom">
       <div class="add">
         <div class="add__container">
-          <select class="add__type">
-            <option value="inc">+</option>
-            <option value="exp">-</option>
+          <input
+            type="number"
+            class="add__salary"
+            placeholder="Цагын үнэлгээ"
+          />
+          <select class="add__direct">
+            <option value="indirect">Indirect</option>
+            <option value="direct">Direct</option>
           </select>
-          <input type="text" class="add__description" placeholder="Тайлбар" />
-          <input type="number" class="add__value" placeholder="Дүн" />
+          <select class="add__uridchilgaa">
+            <option value="avsan">Урьдчилгаа авсан</option>
+            <option value="avaagvi">Урьдчилгаа аваагүй</option>
+          </select>
+          <input
+            type="number"
+            class="add__undsentsag"
+            placeholder="Үндсэн цаг"
+          />
+          <input type="number" class="add__ilvvtsag" placeholder="Илүү цаг" />
+          <input
+            type="number"
+            class="add__bayriintsag"
+            placeholder="Баярын цаг"
+          />
           <button class="add__btn">
             <i class="ion-ios-checkmark-outline"></i>
           </button>
         </div>
       </div>
-
       <div class="container clearfix">
-        <div class="income">
-          <h2 class="icome__title">Орлого</h2>
-
-          <div class="income__list"></div>
-        </div>
-
-        <div class="expenses">
-          <h2 class="expenses__title">Зарлага</h2>
-
-          <div class="expenses__list"></div>
+        <div class="news">
+          <h2 class="news_value"></h2>
+          <div class="news_list"></div>
         </div>
       </div>
     </div>
-
     <script src="app.js"></script>
   </body>
 </html>
