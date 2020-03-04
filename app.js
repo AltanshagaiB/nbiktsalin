@@ -109,7 +109,7 @@ var appController = (function(uiController, financeController) {
     } else {
       niitTsalin = Math.ceil(undsenTsalin + ilvvTsalin + heeriin + bayr);
     }
-    if (niitTsalin > 2400000) {
+    if (niitTsalin > 3000000) {
       nd = 264000;
     } else {
       nd = Math.ceil((niitTsalin * 11.5) / 100);
