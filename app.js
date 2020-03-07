@@ -145,8 +145,7 @@ var appController = (function(uiController, financeController) {
     var c = uiController.getInput().bayriin;
     var f = uiController.getInput().night;
     var undsenTsalin = Math.ceil(a * uiController.getInput().salary);
-    var ilvvTsalin =
-      (Number(f) + Number(b)) * (uiController.getInput().salary * 1.5);
+    var ilvvTsalin = Number(b) * (uiController.getInput().salary * 1.5);
     var huvi = (uiController.getInput().salary * 13) / 100;
     var heeriin = Math.ceil(huvi * (Number(a) + Number(f)));
 
