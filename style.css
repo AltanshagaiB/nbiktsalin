@@ -38,9 +38,12 @@ body {
 ***********d**********************************/
 
 .top {
-  height: 60%;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
-    url(back.jpg);
+  height: 70%;
+  background-image: linear-gradient(
+      rgba(243, 243, 243, 0.35),
+      rgba(0, 0, 0, 0.35)
+    ),
+    url(back1.jpg);
   background-size: cover;
   background-position: center;
   position: relative;
@@ -162,7 +165,9 @@ body {
   transition: border 0.3s;
 }
 .add__salary,
+.night__tsag,
 .add__undsentsag,
+.add__nighttsag,
 .add__ilvvtsag,
 .add__bayriintsag {
   border: 1px solid #e7e7e7;
@@ -176,22 +181,25 @@ body {
   transition: border 0.3s;
 }
 .add__uridchilgaa {
-  width: 200px;
+  width: 170px;
 }
 .add__direct {
-  width: 100px;
+  width: 150px;
 }
 .add__undsentsag {
-  width: 150px;
+  width: 120px;
 }
 .add__ilvvtsag {
-  width: 150px;
+  width: 105px;
+}
+.add__nighttsag {
+  width: 135px;
 }
 .add__bayriintsag {
-  width: 150px;
+  width: 125px;
 }
 .add__salary {
-  width: 150px;
+  width: 155px;
 }
 .add__btn {
   font-size: 35px;
@@ -212,6 +220,7 @@ body {
 .add__salary:focus,
 .add__uridchilgaa:focus,
 .add__undsentsag:focus,
+.add__nighttsag:focus,
 .add__bayriintsag:focus,
 .add__ilvvtsag:focus {
   outline: none;
@@ -223,7 +232,7 @@ body {
 }
 
 .container {
-  width: 1000px;
+  width: 80%;
   margin: 60px auto;
 }
 h2 {

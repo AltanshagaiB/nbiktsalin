@@ -6,6 +6,7 @@ var uiController = (function() {
     inputSalary: ".add__salary",
     inputUndsen: ".add__undsentsag",
     inputIlvv: ".add__ilvvtsag",
+    inputNight: ".add__nighttsag",
     inputBayriin: ".add__bayriintsag",
     addNiit: ".budget__value",
     addtsalin: ".budget__gartolgoh--value",
@@ -40,18 +41,27 @@ var uiController = (function() {
       .join("");
 
     if (z[0] === ",") z = z.substr(1, z.length - 1);
+    // var h = z.length - 1;
+    // if (z[h] === ",") z = z.substr(1, h - 1);
     return z;
     console.log(z);
   };
 
   return {
-    medee: function(a, b, c, d, e) {
+    medee: function(a, b, c, d, e, f, und, ilv, hee, hev, bay) {
+      // a niit tsalin, b gart olgoh, c Niigmiin daatgal, d HAOAT, e uridchilgaa, f shoniin nemegdel
       this.a = a;
       console.log(a);
       this.b = b;
       this.c = c;
       this.d = d;
       this.e = e;
+      this.und = und;
+      this.ilv = ilv;
+      this.hee = hee;
+      this.hev = hev;
+      this.bay = bay;
+      this.f = f;
       console.log(a);
       document.querySelector(DOMstrings.addNiit).textContent = formatMoney(a);
       document.querySelector(DOMstrings.addtsalin).textContent = formatMoney(b);
@@ -63,23 +73,35 @@ var uiController = (function() {
         "- " + formatMoney(e);
       if (b > 1500000) {
         document.querySelector(DOMstrings.news).textContent =
-          "Анд бурзайжээ айн";
+          "Энд гарсан мөнгөн дүн нь яг ийм цалин авна гэсэн баримт биш болно. Үнэхээр эргэлзээтэй байвал санхүүгийн албатай холбогдоно уу";
       } else {
         document.querySelector(DOMstrings.news).textContent =
-          "Ийм цалингаар яаж амьдарна аа. Алив ахдаа дансаа";
+          "Энд гарсан мөнгөн дүн нь яг ийм цалин авна гэсэн баримт биш болно. Үнэхээр эргэлзээтэй байвал санхүүгийн албатай холбогдоно уу";
       }
       document.querySelector(DOMstrings.list).textContent =
-        "Нийт " +
-        a +
+        "Энгийн цаг " +
+        formatMoney(und) +
+        " , Илүү цаг " +
+        formatMoney(ilv) +
+        " , Шөнийн нэмэгдэл " +
+        formatMoney(f) +
+        " , Баярын цаг " +
+        formatMoney(bay) +
+        " , Хээрийн нэмэгдэл " +
+        formatMoney(hee) +
+        " , Хэвийн бус " +
+        formatMoney(hev) +
+        " нийт " +
+        formatMoney(a) +
         " цалин бодогдсон байна. Үүнээс нийгмийн даатгалд " +
-        c +
+        formatMoney(c) +
         " төгрөг суутгаад, дараа нь ХАОАТ " +
-        d +
+        formatMoney(d) +
         " төгрөг суутгаад урьдчилгаа " +
-        e +
+        formatMoney(e) +
         " төгрөг суутгаад таны гарт " +
-        b +
-        " төгрөг дансанд чинь оржээ.";
+        formatMoney(b) +
+        " төгрөг авахаар байна.";
     },
 
     //format
@@ -87,8 +109,7 @@ var uiController = (function() {
     displayDate: function() {
       var unuudur = new Date();
 
-      document.querySelector(DOMstrings.dateLabel).textContent =
-        unuudur.getFullYear() + " оны " + unuudur.getMonth() + " сарын ";
+      document.querySelector(DOMstrings.dateLabel).textContent = "";
     },
     getInput: function() {
       return {
@@ -97,6 +118,7 @@ var uiController = (function() {
         salary: document.querySelector(DOMstrings.inputSalary).value,
         undsen: document.querySelector(DOMstrings.inputUndsen).value,
         ilvv: document.querySelector(DOMstrings.inputIlvv).value,
+        night: document.querySelector(DOMstrings.inputNight).value,
         bayriin: document.querySelector(DOMstrings.inputBayriin).value
       };
     },
@@ -110,7 +132,7 @@ var uiController = (function() {
 // tsalin tsootsooloh
 var financeController = (function() {})();
 
-// ÐŸÑ€Ð¾Ð³Ñ€Ð°Ð¼Ñ‹Ð½ Ñ…Ð¾Ð»Ð±Ð¾Ð³Ñ‡ ÐºÐ¾Ð½Ñ‚Ñ€Ð¾Ð»Ð»ÐµÑ€
+// tsalin bodoh
 var appController = (function(uiController, financeController) {
   var ctrlAddItem = function() {
     var niitTsalin = 0;
@@ -121,23 +143,29 @@ var appController = (function(uiController, financeController) {
     var a = uiController.getInput().undsen;
     var b = uiController.getInput().ilvv;
     var c = uiController.getInput().bayriin;
-
-    var undsenTsalin = a * uiController.getInput().salary;
-    var ilvvTsalin = b * (uiController.getInput().salary * 1.5);
+    var f = uiController.getInput().night;
+    var undsenTsalin = Math.ceil(a * uiController.getInput().salary);
+    var ilvvTsalin =
+      (Number(f) + Number(b)) * (uiController.getInput().salary * 1.5);
     var huvi = (uiController.getInput().salary * 13) / 100;
-    var heeriin = huvi * a;
+    var heeriin = Math.ceil(huvi * a);
 
-    var heviin = (Number(a) + Number(b) + Number(c)) * huvi;
+    var heviin = Math.ceil(
+      (Number(a) + Number(b) + Number(c) + Number(f)) * huvi
+    );
     //   huvi *
-
-    var bayr =
-      uiController.getInput().bayriin * (uiController.getInput().salary * 2);
+    var shono = Math.ceil(f * (uiController.getInput().salary * 1.15));
+    var bayr = Math.ceil(
+      uiController.getInput().bayriin * (uiController.getInput().salary * 2)
+    );
     if (uiController.getInput().indirect === "direct") {
       niitTsalin = Math.ceil(
-        undsenTsalin + ilvvTsalin + heeriin + heviin + bayr
+        undsenTsalin + ilvvTsalin + heeriin + heviin + shono + bayr
       );
     } else {
-      niitTsalin = Math.ceil(undsenTsalin + ilvvTsalin + heeriin + bayr);
+      niitTsalin = Math.ceil(
+        undsenTsalin + ilvvTsalin + heeriin + shono + bayr
+      );
     }
     if (niitTsalin > 5000000) {
       nd = 264000;
@@ -151,7 +179,19 @@ var appController = (function(uiController, financeController) {
       uridchilgaa = 0;
     }
     gartOlgoh = niitTsalin - nd - haoat - uridchilgaa;
-    uiController.medee(niitTsalin, gartOlgoh, nd, haoat, uridchilgaa);
+    uiController.medee(
+      niitTsalin,
+      gartOlgoh,
+      nd,
+      haoat,
+      uridchilgaa,
+      shono,
+      undsenTsalin,
+      ilvvTsalin,
+      heeriin,
+      heviin,
+      bayr
+    );
   };
 
   var setupEventListeners = function() {
