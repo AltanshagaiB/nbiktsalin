@@ -257,3 +257,8 @@ h2 {
 .news_list {
   text-align: center;
 }
+.covid_value {
+  margin: 5px;
+  text-align: center;
+  color: #ff0800;
+}
