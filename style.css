@@ -71,7 +71,7 @@ body {
   margin-bottom: 25px;
   letter-spacing: 2px;
 }
-
+.budget__emd,
 .budget__gartolgoh,
 .budget__haoat,
 .budget__uridchilgaa,
@@ -85,6 +85,10 @@ body {
   background-color: #28b9b5;
 }
 
+.budget__emd {
+  margin-bottom: 5px;
+  background-color: #ff6c6c;
+}
 .budget__nd {
   margin-bottom: 5px;
   background-color: #ff6c6c;
@@ -97,7 +101,7 @@ body {
   margin-bottom: 5px;
   background-color: #ff6c6c;
 }
-
+.budget__emd--text,
 .budget__gartolgoh--text,
 .budget__haoat--text,
 .budget__uridchilgaa--text,
@@ -107,7 +111,7 @@ body {
   color: #444;
   margin-top: 2px;
 }
-
+.budget__emd--value,
 .budget__gartolgoh--value,
 .budget__haoat--value,
 .budget__uridchilgaa--value,
@@ -126,17 +130,21 @@ body {
   padding: 3px 0;
   margin-left: 10px;
 }
+.budget__emd--value:hover,
 .budget__gartolgoh--value:hover,
 .budget__haoat--value:hover,
 .budget__uridchilgaa--value:hover,
 .budget__nd--value:hover {
   margin-right: 5px;
+  transition: 0.2s;
 }
+.budget__emd--text:hover,
 .budget__gartolgoh--text:hover,
 .budget__haoat--text:hover,
 .budget__uridchilgaa--text:hover,
 .budget__nd--text:hover {
   margin-left: 5px;
+  transition: 0.2s;
 }
 .budget__value:hover {
   margin-right: 5px;

@@ -1,5 +1,5 @@
 // Ð”ÑÐ»Ð³ÑÑ†Ñ‚ÑÐ¹ Ð°Ð¶Ð¸Ð»Ð»Ð°Ñ… ÐºÐ¾Ð½Ñ‚Ñ€Ð¾Ð»Ð»ÐµÑ€
-var uiController = (function() {
+var uiController = (function () {
   var DOMstrings = {
     inputDirect: ".add__direct",
     inputUridchilgaa: ".add__uridchilgaa",
@@ -16,15 +16,13 @@ var uiController = (function() {
     addBtn: ".add__btn",
     dateLabel: ".budget__title--month",
     news: ".news_value",
-    list: ".news_list"
+    list: ".news_list",
+    addEmd: ".budget__emd--value",
   };
 
-  var formatMoney = function(too) {
+  var formatMoney = function (too) {
     too = "" + too;
-    var x = too
-      .split("")
-      .reverse()
-      .join("");
+    var x = too.split("").reverse().join("");
     var y = "";
     var count = 1;
 
@@ -35,10 +33,7 @@ var uiController = (function() {
       count++;
     }
 
-    var z = y
-      .split("")
-      .reverse()
-      .join("");
+    var z = y.split("").reverse().join("");
 
     if (z[0] === ",") z = z.substr(1, z.length - 1);
     // var h = z.length - 1;
@@ -48,8 +43,8 @@ var uiController = (function() {
   };
 
   return {
-    medee: function(a, b, c, d, e, f, und, ilv, hee, hev, bay) {
-      // a niit tsalin, b gart olgoh, c Niigmiin daatgal, d HAOAT, e uridchilgaa, f shoniin nemegdel
+    medee: function (a, b, c, d, e, f, und, ilv, hee, hev, bay, emd) {
+      // a niit tsalin, b gart olgoh, c Niigmiin daatgal, d HAOAT, e uridchilgaa, f shoniin nemegdel, emd eruul mendiin daatgal
       this.a = a;
       console.log(a);
       this.b = b;
@@ -61,14 +56,17 @@ var uiController = (function() {
       this.hee = hee;
       this.hev = hev;
       this.bay = bay;
+      this.emd = emd;
       this.f = f;
       console.log(a);
+      document.querySelector(DOMstrings.addEmd).textContent =
+        "- " + formatMoney(emd);
       document.querySelector(DOMstrings.addNiit).textContent = formatMoney(a);
       document.querySelector(DOMstrings.addtsalin).textContent = formatMoney(b);
-      document.querySelector(DOMstrings.addNd).textContent =
-        "- " + formatMoney(c);
-      document.querySelector(DOMstrings.addHaoat).textContent =
-        "- " + formatMoney(d);
+      // document.querySelector(DOMstrings.addNd).textContent =
+      //   "- " + formatMoney(c);
+      // document.querySelector(DOMstrings.addHaoat).textContent =
+      //   "- " + formatMoney(d);
       document.querySelector(DOMstrings.addUridchilgaa).textContent =
         "- " + formatMoney(e);
       if (b > 1500000) {
@@ -93,10 +91,10 @@ var uiController = (function() {
         formatMoney(hev) +
         " нийт " +
         formatMoney(a) +
-        " цалин бодогдсон байна. Үүнээс нийгмийн даатгалд " +
-        formatMoney(c) +
-        " төгрөг суутгаад, дараа нь ХАОАТ " +
-        formatMoney(d) +
+        " цалин бодогдсон байна. Үүнээс Эрүүл мэндийн даатгалд " +
+        formatMoney(emd) +
+        // " төгрөг суутгаад, дараа нь ХАОАТ " +
+        // formatMoney(d) +
         " төгрөг суутгаад урьдчилгаа " +
         formatMoney(e) +
         " төгрөг суутгаад таны гарт " +
@@ -106,12 +104,12 @@ var uiController = (function() {
 
     //format
 
-    displayDate: function() {
+    displayDate: function () {
       var unuudur = new Date();
 
       document.querySelector(DOMstrings.dateLabel).textContent = "";
     },
-    getInput: function() {
+    getInput: function () {
       return {
         indirect: document.querySelector(DOMstrings.inputDirect).value,
         uridchilgaa: document.querySelector(DOMstrings.inputUridchilgaa).value,
@@ -119,27 +117,28 @@ var uiController = (function() {
         undsen: document.querySelector(DOMstrings.inputUndsen).value,
         ilvv: document.querySelector(DOMstrings.inputIlvv).value,
         night: document.querySelector(DOMstrings.inputNight).value,
-        bayriin: document.querySelector(DOMstrings.inputBayriin).value
+        bayriin: document.querySelector(DOMstrings.inputBayriin).value,
       };
     },
 
-    getDOMstrings: function() {
+    getDOMstrings: function () {
       return DOMstrings;
-    }
+    },
   };
 })();
 
 // tsalin tsootsooloh
-var financeController = (function() {})();
+var financeController = (function () {})();
 
 // tsalin bodoh
-var appController = (function(uiController, financeController) {
-  var ctrlAddItem = function() {
+var appController = (function (uiController, financeController) {
+  var ctrlAddItem = function () {
     var niitTsalin = 0;
     var gartOlgoh = 0;
     var nd = 0;
     var haoat = 0;
     var uridchilgaa = 0;
+    var emd = 0;
     var a = uiController.getInput().undsen;
     var b = uiController.getInput().ilvv;
     var c = uiController.getInput().bayriin;
@@ -165,6 +164,7 @@ var appController = (function(uiController, financeController) {
       niitTsalin = Math.ceil(
         undsenTsalin + ilvvTsalin + heeriin + shono + bayr
       );
+      heviin = 0;
     }
     if (niitTsalin > 5000000) {
       nd = 264000;
@@ -177,7 +177,9 @@ var appController = (function(uiController, financeController) {
     } else {
       uridchilgaa = 0;
     }
-    gartOlgoh = niitTsalin - nd - haoat - uridchilgaa;
+    emd = Math.ceil((niitTsalin * 2) / 100);
+    gartOlgoh = niitTsalin - emd - uridchilgaa;
+    // gartOlgoh = niitTsalin - nd - haoat - uridchilgaa;
     uiController.medee(
       niitTsalin,
       gartOlgoh,
@@ -189,18 +191,19 @@ var appController = (function(uiController, financeController) {
       ilvvTsalin,
       heeriin,
       heviin,
-      bayr
+      bayr,
+      emd
     );
   };
 
-  var setupEventListeners = function() {
+  var setupEventListeners = function () {
     var DOM = uiController.getDOMstrings();
 
-    document.querySelector(DOM.addBtn).addEventListener("click", function() {
+    document.querySelector(DOM.addBtn).addEventListener("click", function () {
       ctrlAddItem();
     });
 
-    document.addEventListener("keypress", function(event) {
+    document.addEventListener("keypress", function (event) {
       if (event.keyCode === 13 || event.which === 13) {
         ctrlAddItem();
       }
@@ -208,11 +211,11 @@ var appController = (function(uiController, financeController) {
   };
 
   return {
-    init: function() {
+    init: function () {
       uiController.displayDate();
       console.log("Application started...");
       setupEventListeners();
-    }
+    },
   };
 })(uiController, financeController);
 
