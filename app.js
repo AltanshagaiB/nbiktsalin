@@ -4,6 +4,7 @@ var uiController = (function () {
     inputDirect: ".add__direct",
     inputUridchilgaa: ".add__uridchilgaa",
     inputSalary: ".add__salary",
+    inputNemeltTsalin: ".add__nemeltsalary",
     inputUndsen: ".add__undsentsag",
     inputIlvv: ".add__ilvvtsag",
     inputNight: ".add__nighttsag",
@@ -43,7 +44,7 @@ var uiController = (function () {
   };
 
   return {
-    medee: function (a, b, c, d, e, f, und, ilv, hee, hev, bay, emd) {
+    medee: function (a, b, c, d, e, f, und, ilv, hee, hev, bay, emd, nem) {
       // a niit tsalin, b gart olgoh, c Niigmiin daatgal, d HAOAT, e uridchilgaa, f shoniin nemegdel, emd eruul mendiin daatgal
       this.a = a;
       console.log(a);
@@ -57,6 +58,7 @@ var uiController = (function () {
       this.hev = hev;
       this.bay = bay;
       this.emd = emd;
+      this.nem = nem;
       this.f = f;
       console.log(a);
       document.querySelector(DOMstrings.addEmd).textContent =
@@ -89,6 +91,8 @@ var uiController = (function () {
         formatMoney(hee) +
         " , Хэвийн бус " +
         formatMoney(hev) +
+        " , Нэмэлт цалин " +
+        formatMoney(nem) +
         " нийт " +
         formatMoney(a) +
         " цалин бодогдсон байна. Үүнээс Эрүүл мэндийн даатгалд " +
@@ -114,6 +118,7 @@ var uiController = (function () {
         indirect: document.querySelector(DOMstrings.inputDirect).value,
         uridchilgaa: document.querySelector(DOMstrings.inputUridchilgaa).value,
         salary: document.querySelector(DOMstrings.inputSalary).value,
+        nemelt: document.querySelector(DOMstrings.inputNemeltTsalin).value,
         undsen: document.querySelector(DOMstrings.inputUndsen).value,
         ilvv: document.querySelector(DOMstrings.inputIlvv).value,
         night: document.querySelector(DOMstrings.inputNight).value,
@@ -143,7 +148,9 @@ var appController = (function (uiController, financeController) {
     var b = uiController.getInput().ilvv;
     var c = uiController.getInput().bayriin;
     var f = uiController.getInput().night;
+    var nem = Math.ceil(uiController.getInput().nemelt);
     var undsenTsalin = Math.ceil(a * uiController.getInput().salary);
+    console.log(undsenTsalin, nem);
     var ilvvTsalin = Number(b) * (uiController.getInput().salary * 1.5);
     var huvi = (uiController.getInput().salary * 13) / 100;
     var heeriin = Math.ceil(huvi * (Number(a) + Number(f)));
@@ -158,12 +165,14 @@ var appController = (function (uiController, financeController) {
     );
     if (uiController.getInput().indirect === "direct") {
       niitTsalin = Math.ceil(
-        undsenTsalin + ilvvTsalin + heeriin + heviin + shono + bayr
+        undsenTsalin + ilvvTsalin + heeriin + heviin + shono + bayr + nem
       );
+      console.log(undsenTsalin, ilvvTsalin, heeriin, heviin, shono, bayr, nem);
     } else {
       niitTsalin = Math.ceil(
-        undsenTsalin + ilvvTsalin + heeriin + shono + bayr
+        undsenTsalin + ilvvTsalin + heeriin + shono + bayr + nem
       );
+      console.log(undsenTsalin, ilvvTsalin, heeriin, shono, bayr, nem);
       heviin = 0;
     }
     if (niitTsalin > 5000000) {
@@ -192,7 +201,8 @@ var appController = (function (uiController, financeController) {
       heeriin,
       heviin,
       bayr,
-      emd
+      emd,
+      nem
     );
   };
 

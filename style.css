@@ -173,6 +173,7 @@ body {
   transition: border 0.3s;
 }
 .add__salary,
+.add__nemeltsalary,
 .night__tsag,
 .add__undsentsag,
 .add__nighttsag,
@@ -209,6 +210,9 @@ body {
 .add__salary {
   width: 155px;
 }
+.add__nemeltsalary {
+  width: 155px;
+}
 .add__btn {
   font-size: 35px;
   background: none;
@@ -226,6 +230,7 @@ body {
 }
 .add__direct:focus,
 .add__salary:focus,
+.add__nemeltsalary:focus,
 .add__uridchilgaa:focus,
 .add__undsentsag:focus,
 .add__nighttsag:focus,
