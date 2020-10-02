@@ -61,6 +61,8 @@ var uiController = (function () {
       this.nem = nem;
       this.f = f;
       console.log(a);
+      document.querySelector(DOMstrings.addNd).textContent =
+        "- " + formatMoney(c);
       document.querySelector(DOMstrings.addEmd).textContent =
         "- " + formatMoney(emd);
       document.querySelector(DOMstrings.addNiit).textContent = formatMoney(a);
@@ -175,10 +177,10 @@ var appController = (function (uiController, financeController) {
       console.log(undsenTsalin, ilvvTsalin, heeriin, shono, bayr, nem);
       heviin = 0;
     }
-    if (niitTsalin > 5000000) {
+    if (niitTsalin > 50000000) {
       nd = 264000;
     } else {
-      nd = Math.ceil((niitTsalin * 11.5) / 100);
+      nd = Math.ceil((niitTsalin * 5) / 100);
     }
     haoat = Math.ceil(((niitTsalin - nd) * 10) / 100);
     if (uiController.getInput().uridchilgaa === "avsan") {
@@ -186,8 +188,8 @@ var appController = (function (uiController, financeController) {
     } else {
       uridchilgaa = 0;
     }
-    emd = Math.ceil((niitTsalin * 2) / 100);
-    gartOlgoh = niitTsalin - emd - uridchilgaa;
+    emd = Math.ceil(((niitTsalin - nd) * 2) / 100);
+    gartOlgoh = niitTsalin - nd - emd - uridchilgaa;
     // gartOlgoh = niitTsalin - nd - haoat - uridchilgaa;
     uiController.medee(
       niitTsalin,
