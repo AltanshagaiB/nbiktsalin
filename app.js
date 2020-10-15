@@ -63,8 +63,8 @@ var uiController = (function () {
       console.log(a);
       document.querySelector(DOMstrings.addNd).textContent =
         "- " + formatMoney(c);
-      document.querySelector(DOMstrings.addEmd).textContent =
-        "- " + formatMoney(emd);
+      document.querySelector(DOMstrings.addHaoat).textContent =
+        "- " + formatMoney(d);
       document.querySelector(DOMstrings.addNiit).textContent = formatMoney(a);
       document.querySelector(DOMstrings.addtsalin).textContent = formatMoney(b);
       // document.querySelector(DOMstrings.addNd).textContent =
@@ -97,17 +97,17 @@ var uiController = (function () {
         formatMoney(nem) +
         " нийт " +
         formatMoney(a) +
-        " цалин бодогдсон байна. Үүнээс Нийгмийн даатгалд 5% буюу " +
+        " цалин бодогдсон байна. Үүнээс Нийгмийн даатгал болон Эрүүл мэндийн даатгал нийлээд 7% буюу " +
         formatMoney(c) +
-        " төгрөг суутгаад эрүүл мэндийн даатгалд " +
-        formatMoney(emd) +
+        " төгрөг суутгаад, Хүн амын орлогын албан татварт 10% буюу " +
+        formatMoney(d) +
         // " төгрөг суутгаад, дараа нь ХАОАТ " +
         // formatMoney(d) +
-        " төгрөг суутгаад урьдчилгаа " +
+        " төгрөг суутгаад, урьдчилгаа " +
         formatMoney(e) +
         " төгрөг суутгаад таны гарт " +
         formatMoney(b) +
-        " төгрөг авахаар байна.";
+        " төгрөг шилжихээр байна.";
     },
 
     //format
@@ -182,7 +182,7 @@ var appController = (function (uiController, financeController) {
     if (niitTsalin > 50000000) {
       nd = 264000;
     } else {
-      nd = Math.ceil((niitTsalin * 5) / 100);
+      nd = Math.ceil((niitTsalin * 7) / 100);
     }
     haoat = Math.ceil(((niitTsalin - nd) * 10) / 100);
     if (uiController.getInput().uridchilgaa === "avsan") {
@@ -191,7 +191,7 @@ var appController = (function (uiController, financeController) {
       uridchilgaa = 0;
     }
     emd = Math.ceil(((niitTsalin - nd) * 2) / 100);
-    gartOlgoh = niitTsalin - nd - emd - uridchilgaa;
+    gartOlgoh = niitTsalin - nd - haoat - uridchilgaa;
     // gartOlgoh = niitTsalin - nd - haoat - uridchilgaa;
     uiController.medee(
       niitTsalin,
