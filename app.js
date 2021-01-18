@@ -97,7 +97,7 @@ var uiController = (function () {
         formatMoney(nem) +
         " нийт " +
         formatMoney(a) +
-        " цалин бодогдсон байна. Үүнээс Нийгмийн даатгал болон Эрүүл мэндийн даатгал нийлээд 7% буюу " +
+        " цалин бодогдсон байна. Үүнээс Нийгмийн даатгал болон Эрүүл мэндийн даатгал нийлээд 12.5% буюу " +
         formatMoney(c) +
         " төгрөг суутгаад, Хүн амын орлогын албан татварт 10% буюу " +
         formatMoney(d) +
@@ -182,7 +182,7 @@ var appController = (function (uiController, financeController) {
     if (niitTsalin > 50000000) {
       nd = 264000;
     } else {
-      nd = Math.ceil((niitTsalin * 7) / 100);
+      nd = Math.ceil((niitTsalin * 10.5) / 100);
     }
     haoat = Math.ceil(((niitTsalin - nd) * 10) / 100);
     if (uiController.getInput().uridchilgaa === "avsan") {
